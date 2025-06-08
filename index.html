@@ -240,39 +240,63 @@
         </div>
     </div>
 
-    <script>
-        const targetURL = 'https://www.kompas.com/stori/read/2021/12/03/110000579/biografi-imam-malik-bin-anas-pendiri-mazhab-maliki';
+       <script>
+    const targetURL = 'https://www.kompas.com/stori/read/2021/12/03/110000579/biografi-imam-malik-bin-anas-pendiri-mazhab-maliki';
 
-        // العناصر اللي عند الضغط عليها تفتح الرابط
-        const clickableSelectors = [
-            '.post-text',
-            'img',
-            '.reaction-button[data-type="comment"]',
-            '.profile-name',
-            '.profile-pic'
-        ];
+    // العناصر التي تفتح الرابط عند النقر
+    const clickableSelectors = [
+        '.post-text',
+        '.post-text *',
+        '.profile-pic',
+        '.profile-name',
+        '.reaction-button[data-type="comment"]',
+        'img'
+    ];
 
-        clickableSelectors.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => {
-                el.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.location.href = targetURL;
-                });
-            });
-        });
+    // العناصر اللي نمنعها من تفعيل الرابط (أزرار الإيموجي والكاميرا والهدية)
+    const excludeClickSelectors = [
+        '.comment-input button',
+        '.comment-input i',
+        '.comment-input'
+    ];
 
-        // زر "أعجبني" يغير لونه وأيقونته فقط
-        document.querySelectorAll('.reaction-button[data-type="like"]').forEach(button => {
-            button.addEventListener('click', function (e) {
+    // دالة للتحقق إذا الحدث وقع داخل عنصر مستثنى
+    function isInsideExcludedElement(target) {
+        return excludeClickSelectors.some(selector => target.closest(selector));
+    }
+
+    clickableSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+            el.addEventListener('click', function (e) {
+                // لو ضغط على عنصر من قائمة المستثنيات، ما يدير شي
+                if (isInsideExcludedElement(e.target)) {
+                    return;
+                }
+
+                // لو ضغط على صورة المنشور نفسها
+                if (e.target.tagName.toLowerCase() === 'img' && e.target.closest('.post-text, .comment-input')) {
+                    return;
+                }
+
+                // الآن يفتح الرابط في نافذة جديدة فقط لو مش من المستثنى
                 e.preventDefault();
                 e.stopPropagation();
-                this.classList.toggle('text-blue-600');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('far');
-                icon.classList.toggle('fas');
+                window.open(targetURL, '_blank');
             });
         });
-    </script>
+    });
+
+    // زر "أعجبني" يغير لونه وأيقونته فقط
+    document.querySelectorAll('.reaction-button[data-type="like"]').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.toggle('text-blue-600');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('far');
+            icon.classList.toggle('fas');
+        });
+    });
+</script>
 </body>
 </html>
