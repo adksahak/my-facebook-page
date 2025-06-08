@@ -50,13 +50,35 @@
         .reaction-button.text-blue-600 {
             color: #1877f2;
         }
+        /* تعديل البروفايلات: جعل الصور دائرية داخل الديف */
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: transparent !important; /* نلغي الخلفية الرمادية */
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* في التعليقات حجم أصغر */
+        .comment .profile-pic {
+            width: 32px;
+            height: 32px;
+        }
     </style>
 </head>
 <body class="bg-facebook-gray flex justify-center items-center min-h-screen p-4">
     <div class="w-full max-w-[500px] bg-white rounded-lg overflow-hidden fb-post-shadow">
         <!-- Post Header -->
         <div class="flex items-center p-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-400 to-red-500 profile-pic"></div>
+            <div class="profile-pic">
+                <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&h=100" alt="صورة محمد" />
+            </div>
             <div class="flex-1 mr-3">
                 <div class="flex items-center">
                     <h3 class="font-semibold text-[15px] profile-name"> محمد بحري الفيتوري </h3>
@@ -152,8 +174,10 @@
 
         <!-- Comments -->
         <div class="bg-facebook-gray px-4 py-3">
-            <div class="flex mb-3">
-                <div class="w-8 h-8 rounded-full bg-gray-300 profile-pic"></div>
+            <div class="flex mb-3 comment">
+                <div class="profile-pic">
+                    <img src="https://images.pexels.com/photos/3769020/pexels-photo-3769020.jpeg?auto=compress&cs=tinysrgb&h=100" alt="عادل" />
+                </div>
                 <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
                     <div class="font-medium text-[13px] profile-name">عادل زمرينه</div>
                     <div class="text-[15px] mt-1">أكيد سأحضر! هل يمكن أن نحصل على جدول الأعمال مسبقًا؟</div>
@@ -169,8 +193,10 @@
                 </div>
             </div>
 
-            <div class="flex mb-3 ml-4">
-                <div class="w-8 h-8 rounded-full bg-gray-300 profile-pic"></div>
+            <div class="flex mb-3 ml-4 comment">
+                <div class="profile-pic">
+                    <img src="https://images.pexels.com/photos/3775539/pexels-photo-3775539.jpeg?auto=compress&cs=tinysrgb&h=100" alt="محمد" />
+                </div>
                 <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
                     <div class="font-medium text-[13px] profile-name">محمد فكرون</div>
                     <div class="text-[15px] mt-1">لا حول ولا قوة الا بالله ربي ياخد فيه الحق</div>
@@ -187,7 +213,9 @@
             </div>
 
             <div class="flex">
-                <div class="w-8 h-8 rounded-full bg-gray-300 profile-pic"></div>
+                <div class="profile-pic">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=100" alt="تعليق جديد" />
+                </div>
                 <div
                   class="flex-1 flex items-center bg-white rounded-full h-9 py-1 px-3 ml-2 comment-input"
                 >
