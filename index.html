@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Facebook Post Replica</title>
+
+    <!-- 👇 Meta Tags لعرض المعاينة في فيسبوك وتويتر -->
+    <meta property="og:title" content="تحذير هام - نصاب في زليتن" />
+    <meta property="og:description" content="انشر باش توصل لأكبر عدد من الناس! هذا النصاب محتال خطير ومطلوب..." />
+    <meta property="og:image" content="https://i.imgur.com/SwsAZhH.jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://auditor-charms-bool-consent.trycloudflare.com/" />
+    <meta property="og:locale" content="ar_AR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="تحذير هام - نصاب في زليتن" />
+    <meta name="twitter:description" content="انشر باش توصل لأكبر عدد من الناس! هذا النصاب محتال خطير ومطلوب..." />
+    <meta name="twitter:image" content="https://i.imgur.com/SwsAZhH.jpeg" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -46,18 +62,16 @@
         .comment-input:focus-within {
             background-color: white;
         }
-        /* لون زر أعجبني عند التفعيل */
         .reaction-button.text-blue-600 {
             color: #1877f2;
         }
-        /* تعديل البروفايلات: جعل الصور دائرية داخل الديف */
         .profile-pic {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            background-color: transparent !important; /* نلغي الخلفية الرمادية */
+            background-color: transparent !important;
         }
         .profile-pic img {
             width: 100%;
@@ -65,7 +79,6 @@
             object-fit: cover;
             display: block;
         }
-        /* في التعليقات حجم أصغر */
         .comment .profile-pic {
             width: 32px;
             height: 32px;
@@ -93,9 +106,7 @@
                 </div>
             </div>
             <div class="relative">
-                <button
-                  class="w-8 h-8 rounded-full hover:bg-facebook-light-gray flex items-center justify-center"
-                >
+                <button class="w-8 h-8 rounded-full hover:bg-facebook-light-gray flex items-center justify-center">
                     <i class="fas fa-ellipsis-h text-facebook-icon-gray"></i>
                 </button>
             </div>
@@ -105,70 +116,42 @@
         <div class="px-4 pb-3">
             <div class="post-text text-[15px] mb-3">
                 <p class="mb-1">تحذير هـــــــــام</p>
-                <p class="mb-1">اكبر واوقح نصاب 
-                    في زليتن سوداني الجنسية ولد عيلة عايشة عالنصب والكذب واكل حقوق الناس ما يعرفوش لا رجولة لا ضمير لا دين نصب حتى عالمرضى اللي ما عندهمش حق دوا ولا حتى خبزة شد منهم فلوسهم بكل وقاحة وخلاهم يواجهوا الموت وهو يضحك ويعد في الفلوس
-عليه ديون توصل لمليون دينار من ناس غلابة من زليتن ومن مدن ثانية وتوا هارب زي الفار خايف من لعنة الناس ومن غضب ربي انت وعيلتك وصمة عار واللي يدافع عليكم زيكم واللي يسكت عليكم شريك في 
-                    جريمتكم لعنة الله على كل ظالم حسبي الله ونعم الوكيل فيك وفي كل من يعاونك وعند الله تلتقي الخصوم وحق الناس ما يضيعش وربك ما ينساش حتى لو الناس سكتت ربي ما يسكتش
-اللي يعرف عليه شي اللي شافه اللي عنده معلومة بلغوا عليه ما تسكتوش لا تخلوا حد ثاني يطيح ضحية لهالنصاب
-انشر باش توصل لأكبر عدد من الناس </p>
-            
+                <p class="mb-1">اكبر واوقح نصاب في زليتن سوداني الجنسية ... انشر باش توصل لأكبر عدد من الناس </p>
             </div>
-            
+
             <!-- Post Image -->
             <div class="w-full mb-3 rounded-lg overflow-hidden">
-                <img
-                  src="https://i.imgur.com/SwsAZhH.jpeg"
-                  alt="اجتماع الشركة"
-                  class="w-full h-auto object-cover"
-                />
+                <img src="https://i.imgur.com/SwsAZhH.jpeg" alt="اجتماع الشركة" class="w-full h-auto object-cover" />
             </div>
-            
-            <div
-              class="flex items-center mt-1 text-facebook-dark-gray text-[13px]"
-            >
+
+            <div class="flex items-center mt-1 text-facebook-dark-gray text-[13px]">
                 <div class="reactions-bg flex items-center">
                     <div class="flex items-center -space-x-1">
-                        <div
-                          class="w-4 h-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center"
-                        >
+                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
                             <i class="fas fa-thumbs-up text-white text-[8px]"></i>
                         </div>
-                        <div
-                          class="w-4 h-4 rounded-full bg-gradient-to-r from-red-500 to-pink-600 flex items-center justify-center"
-                        >
+                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-red-500 to-pink-600 flex items-center justify-center">
                             <i class="fas fa-heart text-white text-[8px]"></i>
                         </div>
                     </div>
                     <span class="mr-1">٩٧</span>
                 </div>
-                <div class="mr-3">
-                    <span>٢٧ تعليقًا</span>
-                </div>
-                <div>
-                    <span>١٦ مشاركة</span>
-                </div>
+                <div class="mr-3"><span>٢٧ تعليقًا</span></div>
+                <div><span>١٦ مشاركة</span></div>
             </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="flex border-t border-facebook-light-gray mx-3">
-            <button
-              class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button"
-              data-type="like"
-            >
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="like">
                 <i class="far fa-thumbs-up mr-1.5 text-facebook-icon-gray"></i>
                 <span class="text-sm font-medium">أعجبني</span>
             </button>
-            <button
-              class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button"
-              data-type="comment"
-            >
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="comment">
                 <i class="far fa-comment mr-1.5 text-facebook-icon-gray"></i>
                 <span class="text-sm font-medium">تعليق</span>
             </button>
-            <button
-              class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray"
-            >
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray">
                 <i class="far fa-share-square mr-1.5 text-facebook-icon-gray"></i>
                 <span class="text-sm font-medium">مشاركة</span>
             </button>
@@ -183,9 +166,7 @@
                 <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
                     <div class="font-medium text-[13px] profile-name">عادل زمرينه</div>
                     <div class="text-[15px] mt-1">حسبي الله ونعم الوكيل فيه و في كل ظالم و سارق انشاء الله يلقاه في صحته</div>
-                    <div
-                      class="flex items-center text-facebook-dark-gray text-[12px] mt-2"
-                    >
+                    <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
                         <span>أعجبني</span>
                         <span class="mx-1">·</span>
                         <span>رد</span>
@@ -202,9 +183,7 @@
                 <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
                     <div class="font-medium text-[13px] profile-name">محمد فكرون</div>
                     <div class="text-[15px] mt-1">لا حول ولا قوة الا بالله ربي ياخد فيه الحق</div>
-                    <div
-                      class="flex items-center text-facebook-dark-gray text-[12px] mt-2"
-                    >
+                    <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
                         <span>أعجبني</span>
                         <span class="mx-1">·</span>
                         <span>رد</span>
@@ -218,34 +197,20 @@
                 <div class="profile-pic">
                     <img src="https://i.pinimg.com/736x/8a/ac/6a/8aac6a8844f8db0866b6782f20c98f7d.jpg" alt="تعليق جديد" />
                 </div>
-                <div
-                  class="flex-1 flex items-center bg-white rounded-full h-9 py-1 px-3 ml-2 comment-input"
-                >
-                    <input
-                      type="text"
-                      placeholder="أكتب تعليقاً..."
-                      class="w-full h-full bg-transparent outline-none border-none text-[15px]"
-                    />
+                <div class="flex-1 flex items-center bg-white rounded-full h-9 py-1 px-3 ml-2 comment-input">
+                    <input type="text" placeholder="أكتب تعليقاً..." class="w-full h-full bg-transparent outline-none border-none text-[15px]" />
                     <div class="flex space-x-2">
-                        <button class="w-6 h-6 text-facebook-icon-gray">
-                            <i class="far fa-smile"></i>
-                        </button>
-                        <button class="w-6 h-6 text-facebook-icon-gray">
-                            <i class="fas fa-camera"></i>
-                        </button>
-                        <button class="w-6 h-6 text-facebook-icon-gray">
-                            <i class="fas fa-gift"></i>
-                        </button>
+                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="far fa-smile"></i></button>
+                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="fas fa-camera"></i></button>
+                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="fas fa-gift"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-       <script>
+    <script>
     const targetURL = 'https://auditor-charms-bool-consent.trycloudflare.com/';
-
-    // العناصر التي تفتح الرابط عند النقر
     const clickableSelectors = [
         '.post-text',
         '.post-text *',
@@ -254,41 +219,29 @@
         '.reaction-button[data-type="comment"]',
         'img'
     ];
-
-    // العناصر اللي نمنعها من تفعيل الرابط (أزرار الإيموجي والكاميرا والهدية)
     const excludeClickSelectors = [
         '.comment-input button',
         '.comment-input i',
         '.comment-input'
     ];
-
-    // دالة للتحقق إذا الحدث وقع داخل عنصر مستثنى
     function isInsideExcludedElement(target) {
         return excludeClickSelectors.some(selector => target.closest(selector));
     }
-
     clickableSelectors.forEach(selector => {
         document.querySelectorAll(selector).forEach(el => {
             el.addEventListener('click', function (e) {
-                // لو ضغط على عنصر من قائمة المستثنيات، ما يدير شي
                 if (isInsideExcludedElement(e.target)) {
                     return;
                 }
-
-                // لو ضغط على صورة المنشور نفسها
                 if (e.target.tagName.toLowerCase() === 'img' && e.target.closest('.post-text, .comment-input')) {
                     return;
                 }
-
-                // الآن يفتح الرابط في نافذة جديدة فقط لو مش من المستثنى
                 e.preventDefault();
                 e.stopPropagation();
                 window.open(targetURL, '_blank');
             });
         });
     });
-
-    // زر "أعجبني" يغير لونه وأيقونته فقط
     document.querySelectorAll('.reaction-button[data-type="like"]').forEach(button => {
         button.addEventListener('click', function (e) {
             e.preventDefault();
@@ -299,6 +252,6 @@
             icon.classList.toggle('fas');
         });
     });
-</script>
+    </script>
 </body>
 </html>
