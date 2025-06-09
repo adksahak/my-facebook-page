@@ -1,348 +1,280 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Facebook Post Replica</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تحميل تطبيق هلا باي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    <!-- 👇 Meta Tags لعرض المعاينة في فيسبوك وتويتر -->
-    <meta property="og:title" content="تحذير هام - نصاب ن" />
-    <meta property="og:description" content="انشر باش توصل لأكبر عدد من الناس! هذا النصاب محتال خطير ومطلوب..." />
-    <meta property="og:image" content="https://https://i.imgur.com/WyU4Bj8.jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adksahak.github.io/my-facebook-page/" />
-    <meta property="og:locale" content="ar_AR" />
+    header {
+      background: linear-gradient(to left, #ff6a88, #ff99ac);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+    header p {
+      font-size: 18px;
+      margin: 10px 0 30px;
+    }
+    .cta-btn {
+      background-color: white;
+      color: #ff4b77;
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      background-color: #f0f0f0;
+    }
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="تحذير هام - نصاب في زليتن" />
-    <meta name="twitter:description" content="انشر باش توصل لأكبر عدد من الناس! هذا النصاب محتال خطير ومطلوب..." />
-    <meta name="twitter:image" content="https://i.imgur.com/SwsAZhH.jpeg" />
+    .features {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    .features h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    .feature {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    .feature img {
+      width: 40px;
+      margin-bottom: 10px;
+    }
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'facebook-primary': '#1877f2',
-                        'facebook-gray': '#f0f2f5',
-                        'facebook-dark-gray': '#65676B',
-                        'facebook-light-gray': '#E4E6EB',
-                        'facebook-icon-gray': '#606770'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
-        }
-        .fb-post-shadow {
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        .reactions-bg {
-            background-color: #f0f2f5;
-            border-radius: 18px;
-            padding: 0 6px;
-        }
-        .post-text {
-            word-wrap: break-word;
-            white-space: pre-line;
-            line-height: 1.333;
-        }
-        .comment-input:focus-within {
-            background-color: white;
-        }
-        .reaction-button.text-blue-600 {
-            color: #1877f2;
-        }
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;
-            background-color: transparent !important;
-            cursor: pointer;
-        }
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .comment .profile-pic {
-            width: 32px;
-            height: 32px;
-        }
+    .screenshots {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .screenshots h2 {
+      margin-bottom: 40px;
+    }
+    .phone-frames {
+      display: flex;
+      /* flex-wrap: wrap; */  /* ألغيناها عشان الصور تبقى جنب بعض بدون كسر */
+      justify-content: center;
+      gap: 20px;
+      overflow-x: auto; /* تفعيل التمرير الأفقي على الشاشات الضيقة */
+      padding-bottom: 10px; /* مساحة تحت الصور للتمرير */
+    }
+    .phone-frames img {
+      width: 200px;
+      border-radius: 30px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0; /* منع تصغير الصور على الشاشات الصغيرة */
+    }
 
-        /* مودال تسجيل الدخول */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        .modal {
-            background: white;
-            border-radius: 12px;
-            width: 350px;
-            max-width: 90%;
-            padding: 1.5rem 1.5rem 2.5rem;
-            position: relative;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            direction: rtl;
-        }
-        .modal img.facebook-logo {
-            width: 50px;
-            margin: 0 auto 1rem;
-            display: block;
-        }
-        .modal .close-btn {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            font-size: 1.25rem;
-            color: #555;
-            cursor: pointer;
-            font-weight: 700;
-            border: none;
-            background: transparent;
-            transition: color 0.2s ease;
-        }
-        .modal .close-btn:hover {
-            color: #1877f2;
-        }
-        .modal h2 {
-            margin-bottom: 1rem;
-            font-weight: 600;
-            color: #1877f2;
-            font-size: 1.25rem;
-        }
-        .modal p {
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-        .modal button.login-btn {
-            width: 100%;
-            background-color: #1877f2;
-            color: white;
-            font-weight: 600;
-            padding: 0.6rem 0;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-        .modal button.login-btn:hover {
-            background-color: #165dcb;
-        }
-    </style>
+    .ratings {
+      padding: 40px 20px;
+      background-color: #f1f5f9;
+      text-align: center;
+    }
+    .ratings h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .ratings p {
+      font-size: 16px;
+      color: #666;
+    }
+
+    .testimonials {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .testimonial-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+      text-align: right;
+    }
+    .card img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      float: right;
+      margin-left: 10px;
+    }
+    .card h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .card p {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .download {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .store-buttons img {
+      height: 50px;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+    .store-buttons img:hover {
+      transform: scale(1.05);
+    }
+
+    .support {
+      padding: 30px 20px;
+      background-color: #ff4b77;
+      color: white;
+      text-align: center;
+    }
+    .support p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
-<body class="bg-facebook-gray flex justify-center items-center min-h-screen p-4">
+<body>
+  <header>
+    <img
+      src="https://seitsf.ist.utl.pt/~seitsf.daemon/ar/wp-content/uploads/2025/03/SayHi-Mod-Apk-Logo.webp-512x500.webp"
+      alt="شعار هلا باي"
+    />
+    <h1>تطبيق هلا باي</h1>
+    <p>تعرّف على أصدقاء جدد... بسهولة وأمان</p>
+    <a href="https://seitsf.ist.utl.pt/ar/%D8%AA%D8%AD%D9%85%D9%8A%D9%84-%D8%AA%D8%B7%D8%A8%D9%8A%D9%82-%D9%82%D9%84-%D9%87%D8%A7%D9%8A-sayhi-%D9%85%D9%87%D9%83%D8%B1-%D8%A8%D9%84%D8%B3-2025-%D8%A3%D8%AE%D8%B1-%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-a/"
+      class="cta-btn" target="_blank" rel="noopener noreferrer">حمّل التطبيق الآن</a>
+  </header>
 
-    <div class="w-full max-w-[500px] bg-white rounded-lg overflow-hidden fb-post-shadow">
-        <!-- Post Header -->
-        <div class="flex items-center p-3">
-            <div class="profile-pic">
-                <img src="https://mjs.tn/images/article/ansbennaser.jpg" alt="صورة محمد" />
-            </div>
-            <div class="flex-1 mr-3">
-                <div class="flex items-center">
-                    <h3 class="font-semibold text-[15px] profile-name" style="cursor:pointer;"> محمد بحري الفيتوري </h3>
-                    <span class="ml-1.5 text-facebook-dark-gray">
-                        <i class="fas fa-globe-americas text-[11px]"></i>
-                    </span>
-                </div>
-                <div class="flex items-center text-facebook-dark-gray">
-                    <span class="text-xs"> ١٨ س   </span>
-                    <span class="mx-1">·</span>
-                    <i class="fas fa-user-friends text-[10px]"></i>
-                </div>
-            </div>
-            <div class="relative">
-                <button class="w-8 h-8 rounded-full hover:bg-facebook-light-gray flex items-center justify-center">
-                    <i class="fas fa-ellipsis-h text-facebook-icon-gray"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Post Content -->
-        <div class="px-4 pb-3">
-            <div class="post-text text-[15px] mb-3" style="cursor:pointer;">
-                <p class="mb-1">تحذير هـــــــــام</p>
-                <p class="mb-1">حذير عام من أكبر نصاب اسمه سليم المسماري و هذا لا يعتبر إنسان هذا شخص بلا ضمير بلا نخوة بلا ذرة رجولة هو وابوه وخوته طلعوا عائلة كاملة امتهنت النصب والاحتيال كأنها حرفة شريفة سرقوا رزق الضعفاء خذوا فلوس ناس مريضة تعبانة ما عندهاش حتى حق الدوا وكلوا أموالهم وهم يضحكوا لا رحمة لا إنسانية عليه ديون تتجاوز المليون دينار ليبي جمعها من أرزاق الناس من بنغازي ومدن ثانية وبمجرد ما انكشف هرب واختفى كالجبان اليوم مطلوب وملاحق وكل يوم يزوغ فيه يزيد الذنب اللي على رقبته حسبنا الله ونعم الوكيل فيه وفي كل من ساعده وسكت عليه وعند ربي تجتمع الخصوم يا حمزة لو عندك ذرة كرامة ارجع وواجه الناس اللي سرقت رزقهم بدل ما تهرب وتستخبى زي الجرذان أي حد يعرف عليه حاجة أو شافه لا يسكت بلغ فورا ما تخلوه ينصب على ضحايا جدد كفى سكوت كفى ظلم
-
-</p>
-            </div>
-
-            <!-- Post Image -->
-            <div class="w-full mb-3 rounded-lg overflow-hidden">
-                <img src="https://i.imgur.com/5kxBzQw.jpeg" alt="اجتماع الشركة" class="w-full h-auto object-cover" />
-            </div>
-            
-            <div class="flex items-center mt-1 text-facebook-dark-gray text-[13px]">
-                <div class="reactions-bg flex items-center">
-                    <div class="flex items-center -space-x-1">
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-                            <i class="fas fa-thumbs-up text-white text-[8px]"></i>
-                        </div>
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-red-500 to-pink-600 flex items-center justify-center">
-                            <i class="fas fa-heart text-white text-[8px]"></i>
-                        </div>
-                    </div>
-                    <span class="mr-1">٩٧</span>
-                </div>
-                <div class="mr-3"><span>٢٧ تعليقًا</span></div>
-                <div><span>١٦ مشاركة</span></div>
-            </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="flex border-t border-facebook-light-gray mx-3">
-            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="like" style="cursor:pointer;">
-                <i class="far fa-thumbs-up mr-1.5 text-facebook-icon-gray"></i>
-                <span class="text-sm font-medium">أعجبني</span>
-            </button>
-            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="comment" style="cursor:pointer;">
-                <i class="far fa-comment mr-1.5 text-facebook-icon-gray"></i>
-                <span class="text-sm font-medium">تعليق</span>
-            </button>
-            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray share-button" style="cursor:pointer;">
-                <i class="far fa-share-square mr-1.5 text-facebook-icon-gray"></i>
-                <span class="text-sm font-medium">مشاركة</span>
-            </button>
-        </div>
-
-        <!-- Comments -->
-        <div class="bg-facebook-gray px-4 py-3">
-            <div class="flex mb-3 comment">
-                <div class="profile-pic" style="cursor:pointer;">
-                    <img src="https://scd.infomigrants.net/media/resize/my_image_big/bf2bd6f8e71fb696c3560d516c2b3be58fe78cc7.jpg" alt="عادل" />
-                </div>
-                <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
-                    <div class="font-medium text-[13px] profile-name" style="cursor:pointer;">عادل زمرينه</div>
-                    <div class="text-[15px] mt-1">حسبي الله ونعم الوكيل فيه و في كل ظالم و سارق انشاء الله يلقاه في صحته</div>
-                    <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
-                        <span>أعجبني</span>
-                        <span class="mx-1">·</span>
-                        <span>رد</span>
-                        <span class="mx-1">·</span>
-                        <span>منذ ساعتين</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex mb-3 ml-4 comment">
-                <div class="profile-pic" style="cursor:pointer;">
-                    <img src="https://aresmaxima.com/wp-content/uploads/2023/03/Screenshot-2023-03-26-at-00-55-06-Armored-Vehicles-RDG-Offer.docx-Armored-Vehicles-RDG-Offer.docx-1.pdf.png" alt="محمد" />
-                </div>
-                <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
-                    <div class="font-medium text-[13px] profile-name" style="cursor:pointer;">محمد فكرون</div>
-                    <div class="text-[15px] mt-1">لا حول ولا قوة الا بالله ربي ياخد فيه الحق</div>
-                    <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
-                        <span>أعجبني</span>
-                        <span class="mx-1">·</span>
-                        <span>رد</span>
-                        <span class="mx-1">·</span>
-                        <span>منذ ٣ ساعات</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex">
-                <div class="profile-pic">
-                    <img src="https://i.pinimg.com/736x/8a/ac/6a/8aac6a8844f8db0866b6782f20c98f7d.jpg" alt="تعليق جديد" />
-                </div>
-                <div class="flex-1 flex items-center bg-white rounded-full h-9 py-1 px-3 ml-2 comment-input">
-                    <input type="text" placeholder="أكتب تعليقاً..." class="w-full h-full bg-transparent outline-none border-none text-[15px]" />
-                    <div class="flex space-x-2">
-                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="far fa-smile"></i></button>
-                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="fas fa-camera"></i></button>
-                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="fas fa-gift"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section class="features">
+    <h2>مميزات التطبيق</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/ff4b77/chat.png" alt="دردشة فورية" />
+        <h3>دردشة فورية آمنة</h3>
+        <p>تواصل مباشرة مع أشخاص جدد بسهولة</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/ff4b77/smartphone.png" alt="مطابقة ذكية" />
+        <h3>مطابقة ذكية</h3>
+        <p>نقترح لك أشخاصًا متوافقين مع اهتماماتك</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/ff4b77/user.png" alt="ملف شخصي" />
+        <h3>ملف شخصي مميز</h3>
+        <p>صمّم ملفك الشخصي وشارك اهتماماتك</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/ff4b77/customer-support.png" alt="دعم فني" />
+        <h3>دعم فني متواصل</h3>
+        <p>نحن معك على مدار الساعة</p>
+      </div>
     </div>
+  </section>
 
-    <!-- مودال تسجيل الدخول -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-            <button class="close-btn" id="modalCloseBtn" aria-label="إغلاق النافذة">&times;</button>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" class="facebook-logo" />
-            <h2 id="loginTitle" style="color: black;">استفد من التجربة الكاملة</h2>
-            <p>قم بتسجيل الدخول للاطلاع علي المحتوي</p>
-            <button class="login-btn" id="loginBtn">تسجيل الدخول</button>
-        </div>
+  <section class="screenshots">
+    <h2>صور من داخل هلا باي</h2>
+    <div class="phone-frames">
+      <img src="https://image.winudf.com/v2/image1/Y29tLnVuZWFyYnkuc2F5aGlfc2NyZWVuX2FyXzJfMTU1NzAzNjIyNV8wODQ/screen-2.webp?fakeurl=1&type=.webp" alt="شات 1" />
+      <img src="https://image.winudf.com/v2/image1/Y29tLnVuZWFyYnkuc2F5aGlfc2NyZWVuX2FyXzFfMTU1NzAzNjIyNV8wOTY/screen-1.webp?fakeurl=1&type=.webp" alt="شات 2" />
+      <img src="https://image.winudf.com/v2/image1/Y29tLnVuZWFyYnkuc2F5aGlfc2NyZWVuX2FyXzBfMTU1NzAzNjIyNF8wMjc/screen-0.webp?fakeurl=1&type=.webp" alt="ملف شخصي" />
     </div>
+  </section>
 
-    <script>
-        // جلب عناصر النوافذ والأزرار
-        const loginModal = document.getElementById('loginModal');
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const loginBtn = document.getElementById('loginBtn');
+  <section class="ratings">
+    <h2>4.8 من 5</h2>
+    <p>أكثر من 12,500 مستخدم يثقون بهلا باي</p>
+  </section>
 
-        // فتح النافذة عند الضغط على الأزرار أو الصور أو الأسماء (حسب المطلوب)
-        // اختر كل العناصر التي يجب أن تفتح النافذة
-        const triggerSelectors = [
-            '.reaction-button',  // أعجبني وتعليق
-            '.share-button',     // مشاركة
-            '.profile-pic img',  // صور البروفيلات
-            '.profile-name',     // أسماء البروفيلات
-        ];
+  <section class="testimonials">
+    <h2>آراء المستخدمين</h2>
+    <div class="testimonial-cards">
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="مستخدم 1" />
+        <h4>ليلى م.</h4>
+        <p>تعرّفت على أصدقاء رائعين عبر هلا باي ❤️</p>
+      </div>
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="مستخدم 2" />
+        <h4>أحمد س.</h4>
+        <p>واجهة بسيطة وسهلة الاستخدام، ممتاز!</p>
+      </div>
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="مستخدم 3" />
+        <h4>سارة خ.</h4>
+        <p>أكثر تطبيق تعارف آمن وجدي جربته.</p>
+      </div>
+    </div>
+  </section>
 
-        // نضيف لكل العناصر المستهدفة حدث النقر ليظهر المودال
-        triggerSelectors.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => {
-                el.style.cursor = 'pointer';
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    showLoginModal();
-                });
-            });
-        });
+  <section id="download" class="download">
+    <h2>حمّل هلا باي الآن</h2>
+    <div class="store-buttons">
+      <a href="#">
+       </a>
+    </div>
+  </section>
 
-        function showLoginModal() {
-            loginModal.style.display = 'flex';
-        }
-
-        function hideLoginModal() {
-            loginModal.style.display = 'none';
-        }
-
-        // إغلاق النافذة عند الضغط على زر الإغلاق
-        modalCloseBtn.addEventListener('click', () => {
-            hideLoginModal();
-        });
-
-        // إغلاق النافذة عند الضغط خارجها
-        loginModal.addEventListener('click', (e) => {
-            if(e.target === loginModal) {
-                hideLoginModal();
-            }
-        });
-
-        // زر تسجيل الدخول يوجه إلى الرابط المطلوب
-        loginBtn.addEventListener('click', () => {
-            window.location.href = 'https://issue-platforms-assume-husband.trycloudflare.com/';
-        });
-    </script>
+  <section class="support">
+    <h2>بحاجة للمساعدة؟</h2>
+    <p>راسلنا عبر: support@halabay.com</p>
+    <p>
+      أو تواصل معنا عبر واتساب:
+      <a
+        style="color: white; text-decoration: underline"
+        href="https://wa.me/123456789"
+        >اضغط هنا</a
+      >
+    </p>
+  </section>
 </body>
 </html>
