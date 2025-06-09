@@ -2,279 +2,176 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تحميل تطبيق هلا باي</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول - SayHi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Cairo', sans-serif;
-      background-color: #ffffff;
-      color: #333;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      direction: rtl;
     }
+
+    .login-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      color: #333;
+      font-size: 24px;
+    }
+
     a {
       text-decoration: none;
-      color: inherit;
     }
 
-    header {
-      background: linear-gradient(to left, #ff6a88, #ff99ac);
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.3s;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      border: none;
+      cursor: pointer;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .google {
+      background-color: #ffffff;
+      color: #444;
+      border: 1px solid #ddd;
+    }
+
+    .facebook {
+      background-color: #1877f2;
       color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    header img {
-      width: 80px;
-      height: auto;
-      margin-bottom: 20px;
-    }
-    header h1 {
-      font-size: 36px;
-      margin: 0;
-    }
-    header p {
-      font-size: 18px;
-      margin: 10px 0 30px;
-    }
-    .cta-btn {
-      background-color: white;
-      color: #ff4b77;
-      padding: 14px 30px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: background-color 0.3s;
-      display: inline-block;
-    }
-    .cta-btn:hover {
-      background-color: #f0f0f0;
     }
 
-    .features {
-      padding: 60px 20px;
-      text-align: center;
-      background-color: #f9f9f9;
-    }
-    .features h2 {
-      font-size: 28px;
-      margin-bottom: 40px;
-    }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-    }
-    .feature {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-    .feature img {
-      width: 40px;
-      margin-bottom: 10px;
+    .apple {
+      background-color: #000;
+      color: white;
     }
 
-    .screenshots {
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .screenshots h2 {
-      margin-bottom: 40px;
-    }
-    .phone-frames {
-      display: flex;
-      /* flex-wrap: wrap; */  /* ألغيناها عشان الصور تبقى جنب بعض بدون كسر */
-      justify-content: center;
-      gap: 20px;
-      overflow-x: auto; /* تفعيل التمرير الأفقي على الشاشات الضيقة */
-      padding-bottom: 10px; /* مساحة تحت الصور للتمرير */
-    }
-    .phone-frames img {
-      width: 200px;
-      border-radius: 30px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      flex-shrink: 0; /* منع تصغير الصور على الشاشات الصغيرة */
-    }
-
-    .ratings {
-      padding: 40px 20px;
-      background-color: #f1f5f9;
-      text-align: center;
-    }
-    .ratings h2 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-    .ratings p {
-      font-size: 16px;
-      color: #666;
-    }
-
-    .testimonials {
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .testimonial-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      width: 280px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
-      text-align: right;
-    }
-    .card img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      float: right;
+    .social-btn svg {
+      width: 20px;
+      height: 20px;
       margin-left: 10px;
     }
-    .card h4 {
-      margin: 0;
-      font-size: 16px;
-    }
-    .card p {
-      margin-top: 5px;
+
+    .or {
+      margin: 20px 0 10px;
       font-size: 14px;
-      color: #555;
+      color: #666;
+      position: relative;
     }
 
-    .download {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .store-buttons img {
-      height: 50px;
-      margin: 10px;
-      transition: transform 0.2s;
-    }
-    .store-buttons img:hover {
-      transform: scale(1.05);
+    .or::before, .or::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background-color: #ccc;
     }
 
-    .support {
-      padding: 30px 20px;
-      background-color: #ff4b77;
+    .or::before {
+      right: 10%;
+    }
+
+    .or::after {
+      left: 10%;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: #ff6f91;
+      outline: none;
+      box-shadow: 0 0 5px rgba(255, 111, 145, 0.4);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff6f91;
+      border: none;
       color: white;
-      text-align: center;
-    }
-    .support p {
       font-size: 16px;
-      margin: 5px 0;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 28px;
-      }
-      .card {
-        width: 90%;
-      }
+    .login-btn:hover {
+      background-color: #e05578;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img
-      src="https://seitsf.ist.utl.pt/~seitsf.daemon/ar/wp-content/uploads/2025/03/SayHi-Mod-Apk-Logo.webp-512x500.webp"
-      alt="شعار هلا باي"
-    />
-    <h1>تطبيق هلا باي</h1>
-    <p>تعرّف على أصدقاء جدد... بسهولة وأمان</p>
-    <a href="https://seitsf.ist.utl.pt/ar/%D8%AA%D8%AD%D9%85%D9%8A%D9%84-%D8%AA%D8%B7%D8%A8%D9%8A%D9%82-%D9%82%D9%84-%D9%87%D8%A7%D9%8A-sayhi-%D9%85%D9%87%D9%83%D8%B1-%D8%A8%D9%84%D8%B3-2025-%D8%A3%D8%AE%D8%B1-%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-a/"
-      class="cta-btn" target="_blank" rel="noopener noreferrer">حمّل التطبيق الآن</a>
-  </header>
+  <div class="login-container">
+    <h1>إبدأ البحث عن شريك الحياة!
+</h1>
 
-  <section class="features">
-    <h2>مميزات التطبيق</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <img src="https://img.icons8.com/ios-filled/50/ff4b77/chat.png" alt="دردشة فورية" />
-        <h3>دردشة فورية آمنة</h3>
-        <p>تواصل مباشرة مع أشخاص جدد بسهولة</p>
-      </div>
-      <div class="feature">
-        <img src="https://img.icons8.com/ios-filled/50/ff4b77/smartphone.png" alt="مطابقة ذكية" />
-        <h3>مطابقة ذكية</h3>
-        <p>نقترح لك أشخاصًا متوافقين مع اهتماماتك</p>
-      </div>
-      <div class="feature">
-        <img src="https://img.icons8.com/ios-filled/50/ff4b77/user.png" alt="ملف شخصي" />
-        <h3>ملف شخصي مميز</h3>
-        <p>صمّم ملفك الشخصي وشارك اهتماماتك</p>
-      </div>
-      <div class="feature">
-        <img src="https://img.icons8.com/ios-filled/50/ff4b77/customer-support.png" alt="دعم فني" />
-        <h3>دعم فني متواصل</h3>
-        <p>نحن معك على مدار الساعة</p>
-      </div>
-    </div>
-  </section>
+    <a href="https://accounts.google.com/" target="_blank" rel="noopener noreferrer">
+      <button class="social-btn google" type="button" aria-label="تسجيل الدخول عبر جوجل">
+        <svg viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M533.5 278.4c0-17.8-1.6-35-4.6-51.6H272v97.6h147.6c-6.4 34.8-25.4 64.3-54.3 84.2l87.7 68.2c51.3-47.3 80.5-117.2 80.5-198.4z"/><path fill="#34A853" d="M272 544.3c72.6 0 133.4-24.1 177.8-65.2l-87.7-68.2c-24.3 16.3-55.5 25.9-90.1 25.9-69 0-127.4-46.5-148.3-109.1H33.8v68.4c44.4 87.9 135.9 148.2 238.2 148.2z"/><path fill="#FBBC05" d="M123.7 327.7c-10.5-31.2-10.5-64.8 0-96l-68.5-68.4C18.5 221.1 0 271.1 0 326.1s18.5 105 55.2 145.7l68.5-68.4z"/><path fill="#EA4335" d="M272 107.3c39.5-.6 76.7 13.6 105.5 39.4l79-79C417.2 24.4 346.3-1.3 272 0 169.7 0 78.2 60.2 33.8 148.2l68.5 68.4C144.6 153.8 203 107.3 272 107.3z"/></svg>
+        سجل دخول عبر جوجل
+      </button>
+    </a>
 
-  <section class="screenshots">
-    <h2>صور من داخل هلا باي</h2>
-    <div class="phone-frames">
-      <img src="https://image.winudf.com/v2/image1/Y29tLnVuZWFyYnkuc2F5aGlfc2NyZWVuX2FyXzJfMTU1NzAzNjIyNV8wODQ/screen-2.webp?fakeurl=1&type=.webp" alt="شات 1" />
-      <img src="https://image.winudf.com/v2/image1/Y29tLnVuZWFyYnkuc2F5aGlfc2NyZWVuX2FyXzFfMTU1NzAzNjIyNV8wOTY/screen-1.webp?fakeurl=1&type=.webp" alt="شات 2" />
-      <img src="https://image.winudf.com/v2/image1/Y29tLnVuZWFyYnkuc2F5aGlfc2NyZWVuX2FyXzBfMTU1NzAzNjIyNF8wMjc/screen-0.webp?fakeurl=1&type=.webp" alt="ملف شخصي" />
-    </div>
-  </section>
+    <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer">
+      <button class="social-btn facebook" type="button" aria-label="تسجيل الدخول عبر فيسبوك">
+        <svg viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M279.14 288l14.22-92.66h-88.91V141.09c0-25.35 12.42-50.06 52.24-50.06H293V6.26S259.36 0 225.36 0c-73.12 0-121.19 44.38-121.19 124.72V195.3H22.89V288h81.28v224h100.17V288z"/></svg>
+        سجل دخول عبر فيسبوك
+      </button>
+    </a>
 
-  <section class="ratings">
-    <h2>4.8 من 5</h2>
-    <p>أكثر من 12,500 مستخدم يثقون بهلا باي</p>
-  </section>
+    <a href="https://appleid.apple.com/" target="_blank" rel="noopener noreferrer">
+      <button class="social-btn apple" type="button" aria-label="تسجيل الدخول عبر أبل">
+        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M318.7 268.7c-.1-51.3 41.8-75.8 43.7-77.1-24-35-61.3-39.8-74.5-40.4-31.7-3.2-62.1 18.7-78.2 18.7-16.2 0-41.2-18.3-67.8-17.8-34.9.5-67 20.4-85.3 52.1-36.6 63.5-9.3 157.2 26.3 208.7 17.4 26.3 38.1 55.8 65.3 54.7 26.3-1.1 36.2-17.1 67.9-17.1 31.7 0 40.8 17.1 68.5 16.6 28.2-.4 46-26.7 63.4-53 19.8-29 27.9-57 28.2-58.5-.6-.3-54.1-20.9-54.2-82.7zM266.7 97.3c14.9-18 25-43.1 22.3-68-21.5.9-47.5 14.4-62.8 32.4-13.8 16-25.9 41.8-22.6 66.3 23.9 1.9 48.4-12.1 63.1-30.7z"/></svg>
+        سجل دخول عبر أبل
+      </button>
+    </a>
 
-  <section class="testimonials">
-    <h2>آراء المستخدمين</h2>
-    <div class="testimonial-cards">
-      <div class="card">
-        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="مستخدم 1" />
-        <h4>ليلى م.</h4>
-        <p>تعرّفت على أصدقاء رائعين عبر هلا باي ❤️</p>
-      </div>
-      <div class="card">
-        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="مستخدم 2" />
-        <h4>أحمد س.</h4>
-        <p>واجهة بسيطة وسهلة الاستخدام، ممتاز!</p>
-      </div>
-      <div class="card">
-        <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="مستخدم 3" />
-        <h4>سارة خ.</h4>
-        <p>أكثر تطبيق تعارف آمن وجدي جربته.</p>
-      </div>
-    </div>
-  </section>
+    <p class="or">أو باستخدام البريد الإلكتروني</p>
 
-  <section id="download" class="download">
-    <h2>حمّل هلا باي الآن</h2>
-    <div class="store-buttons">
-      <a href="#">
-       </a>
-    </div>
-  </section>
-
-  <section class="support">
-    <h2>بحاجة للمساعدة؟</h2>
-    <p>راسلنا عبر: support@halabay.com</p>
-    <p>
-      أو تواصل معنا عبر واتساب:
-      <a
-        style="color: white; text-decoration: underline"
-        href="https://wa.me/123456789"
-        >اضغط هنا</a
-      >
-    </p>
-  </section>
+    <form>
+      <input type="email" placeholder="اسم المستخدم أو البريد الإلكتروني" required />
+      <input type="password" placeholder="كلمة المرور" required />
+      <button type="submit" class="login-btn">تسجيل الدخول</button>
+    </form>
+  </div>
 </body>
 </html>
